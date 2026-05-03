@@ -49,8 +49,7 @@ skin-lesion-detection/
 
 1️⃣ Clone the repository
 
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/krishnapp2004/skin-lesion-detection.git
 
 2️⃣ Create virtual environment
 
