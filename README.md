@@ -132,7 +132,7 @@ python gradcam.py
 
 🙌 Author
 
-Krishna
+P P Krishna
 Computer Science Student
 
 ---
