@@ -1,141 +1,292 @@
-🧠 Skin Lesion Detection using Deep Learning
+# Skin Lesion Detection Using Deep Learning - SKINAI
 
-📌 Overview
+A deep learning-based web application for classifying dermoscopic skin lesion images into nine categories, including melanoma. The system uses a lightweight MobileNetV2 architecture for efficient image classification and integrates Grad-CAM for model interpretability.
 
-This project focuses on detecting and classifying skin lesions using deep learning techniques. The goal is to assist in early identification of potential skin diseases such as melanoma by analyzing dermoscopic images.
+> **Disclaimer:** This project is intended for educational and research purposes only. It is not a medical diagnostic system and should not be used as a substitute for professional medical advice or clinical examination.
 
-The model is trained on labeled image data and can predict lesion categories from new input images.
+## Overview
 
----
+Skin cancer is one of the most common forms of cancer, and early identification of suspicious lesions can play an important role in improving treatment outcomes. This project explores the application of deep learning and computer vision for automated skin lesion classification.
 
-🚀 Features
+The system was developed using **MobileNetV2 with transfer learning** and trained on **27,666 dermoscopic images** across nine lesion categories. The resulting model achieved **85.3% overall classification accuracy** and **87.2% sensitivity for melanoma detection**.
 
-- 🧬 Deep learning-based skin lesion classification
-- 📊 Data preprocessing and validation pipeline
-- ⚠️ Invalid image detection and handling
-- 🔥 Grad-CAM visualization for model interpretability
-- 📈 Training and evaluation scripts included
+The trained model is deployed through a Flask-based web application that allows users to upload an image, obtain a prediction, view the model's confidence, and examine a Grad-CAM visualization of the regions influencing the prediction.
 
----
+## Key Features
 
-🛠️ Tech Stack
+* Nine-class skin lesion classification
+* Melanoma detection
+* MobileNetV2-based transfer learning
+* Grad-CAM-based model explainability
+* Real-time image prediction
+* Lightweight 13.4 MB trained model
+* Prediction latency of less than three seconds
+* Web-based image upload and prediction interface
+* Educational module covering the ABCDE rule
+* Skin cancer awareness and prevention information
+* Invalid or unsuitable image detection
 
-- Python
-- TensorFlow / PyTorch
-- OpenCV
-- NumPy, Pandas
-- Matplotlib, Seaborn
+## Model Performance
 
----
+The model was trained using 27,666 dermoscopic images.
 
-📂 Project Structure
+| Metric               | Performance |
+| -------------------- | ----------: |
+| Overall Accuracy     |       85.3% |
+| Melanoma Sensitivity |       87.2% |
+| Number of Classes    |           9 |
+| Training Images      |      27,666 |
+| Model Size           |     13.4 MB |
+| Prediction Time      | < 3 seconds |
+| Architecture         | MobileNetV2 |
 
-skin-lesion-detection/
-│── app.py                         # Main application
-│── model_utils.py                 # Model helper functions
-│── train_melanoma_with_invalid_detection.py  # Training script
-│── validate_dataset.py            # Dataset validation
-│── gradcam.py                     # Visualization (Grad-CAM)
-│── predict_test.py                # Testing predictions
-│── requirements.txt               # Dependencies
-│── templates/                     # UI (if applicable)
-│── dataset/                       # (ignored)
-│── models/                        # (ignored)
-│── logs/                          # (ignored)
+Melanoma sensitivity was specifically considered as an important evaluation metric because minimizing false-negative predictions is particularly relevant for melanoma screening applications.
 
----
+## Model Architecture
 
-⚙️ Installation
+The project uses **MobileNetV2**, a lightweight convolutional neural network architecture designed for efficient image classification.
 
-1️⃣ Clone the repository
+Transfer learning is used to leverage features learned from large-scale image datasets while adapting the model to the skin lesion classification task.
 
-git clone https://github.com/krishnapp2004/skin-lesion-detection.git
+### Prediction Pipeline
 
-2️⃣ Create virtual environment
+```text
+Input Image
+     |
+     v
+Image Preprocessing
+     |
+     v
+MobileNetV2
+     |
+     v
+Classification Layer
+     |
+     v
+Nine-Class Prediction
+     |
+     +------------------+
+     |                  |
+     v                  v
+Confidence Score    Grad-CAM
+                        |
+                        v
+                 Visual Explanation
+```
 
+The lightweight architecture enables the model to perform predictions efficiently while maintaining competitive classification performance.
+
+## Explainable AI
+
+To improve model interpretability, the application incorporates **Gradient-weighted Class Activation Mapping (Grad-CAM)**.
+
+Grad-CAM generates a heatmap indicating the regions of the input image that contributed most strongly to the model's prediction. This provides a visual representation of the model's attention and helps users better understand the basis of its classification.
+
+The explainability component is particularly useful when working with deep learning models, where individual predictions can otherwise be difficult to interpret.
+
+## Web Application
+
+The trained model is integrated into a **Flask web application** that provides a simple interface for interacting with the system.
+
+### Application Workflow
+
+1. Upload a dermoscopic image.
+2. Preprocess the uploaded image.
+3. Run the image through the trained MobileNetV2 model.
+4. Generate the predicted lesion category.
+5. Display the prediction confidence.
+6. Generate a Grad-CAM visualization.
+7. Present relevant skin cancer awareness information.
+
+## Educational Module
+
+The application includes an educational section designed to provide general information about skin cancer awareness.
+
+The module introduces the **ABCDE rule**:
+
+| Criterion     | Description                                                          |
+| ------------- | -------------------------------------------------------------------- |
+| A — Asymmetry | One half of a lesion differs from the other half.                    |
+| B — Border    | The border may be irregular, uneven, or poorly defined.              |
+| C — Color     | The lesion may contain multiple or unevenly distributed colors.      |
+| D — Diameter  | Larger lesions may require additional clinical attention.            |
+| E — Evolving  | Changes in size, shape, color, or appearance may require evaluation. |
+
+The application also provides general information regarding skin cancer awareness and prevention.
+
+## Project Structure
+
+```text
+skin-lesion-detection-miniproject/
+│
+├── Outputs/
+│
+├── app.py
+├── model_utils.py
+├── train_melanoma_with_invalid_detection.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+### File Description
+
+| File                                       | Description                            |
+| ------------------------------------------ | -------------------------------------- |
+| `app.py`                                   | Flask application and web interface    |
+| `model_utils.py`                           | Model loading and prediction utilities |
+| `train_melanoma_with_invalid_detection.py` | Model training and evaluation pipeline |
+| `requirements.txt`                         | Python package dependencies            |
+| `Outputs/`                                 | Generated results and outputs          |
+| `README.md`                                | Project documentation                  |
+
+## Technology Stack
+
+**Programming Language**
+
+* Python
+
+**Deep Learning**
+
+* TensorFlow
+* Keras
+* MobileNetV2
+
+**Computer Vision and Data Processing**
+
+* OpenCV
+* NumPy
+* Matplotlib
+
+**Explainable AI**
+
+* Grad-CAM
+
+**Web Development**
+
+* Flask
+* HTML
+* CSS
+
+**Development Tools**
+
+* Visual Studio Code
+* Jupyter Notebook
+* Git
+* GitHub
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/krishnapp2004/skin-lesion-detection-miniproject.git
+cd skin-lesion-detection-miniproject
+```
+
+### 2. Create a Virtual Environment
+
+For Windows:
+
+```bash
 python -m venv venv
-venv\Scripts\activate   # Windows
+venv\Scripts\activate
+```
 
-3️⃣ Install dependencies
+For Linux/macOS:
 
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
----
+## Running the Application
 
-📊 Dataset
+Start the Flask application using:
 
-The dataset is not included in this repository due to size limitations.
+```bash
+python app.py
+```
 
-You can use publicly available datasets such as:
+The application will start on the local Flask server. Open the URL displayed in the terminal to access the web interface.
 
-- ISIC (International Skin Imaging Collaboration)
+## Model Training
 
-Place your dataset inside:
+The model can be trained using the provided training script:
 
-dataset/
-   ├── train/
-   └── test/
-
----
-
-▶️ How to Run
-
-🔹 Train the model
-
+```bash
 python train_melanoma_with_invalid_detection.py
+```
 
-🔹 Validate dataset
+The training pipeline includes image preprocessing, model training, validation, and evaluation.
 
-python validate_dataset.py
+The complete dataset and trained model files may not be included in the repository due to their size.
 
-🔹 Run prediction
+## Dataset
 
-python predict_test.py
+The model was trained using **27,666 dermoscopic images** representing nine skin lesion categories.
 
----
+The dataset is not included directly in this repository because of its size and dataset distribution considerations. To reproduce the project, the dataset should be obtained from its appropriate source and organized according to the structure expected by the training pipeline.
 
-🔥 Grad-CAM Visualization
+## Results
 
-Grad-CAM is used to visualize which parts of the image influenced the model’s prediction.
+The trained MobileNetV2 model achieved:
 
-Run:
+* **85.3% overall accuracy**
+* **87.2% melanoma sensitivity**
+* **13.4 MB model size**
+* **Less than 3 seconds prediction time**
 
-python gradcam.py
+These results demonstrate the feasibility of deploying a lightweight deep learning model for real-time skin lesion classification through a web-based interface.
 
----
+## Limitations
 
-📈 Results
+The system has several limitations:
 
-- Model trained on skin lesion dataset
-- Achieves good classification performance (update with accuracy if available)
-- Supports visualization for better interpretability
+* Model performance depends on the quality and distribution of the training data.
+* Dermoscopic images may differ significantly from images captured using consumer cameras or smartphones.
+* The model can produce incorrect predictions.
+* Performance may vary across different populations, imaging devices, and clinical environments.
+* The system has not been validated for clinical diagnosis.
+* Predictions should not be considered a substitute for evaluation by a qualified medical professional.
 
----
+## Future Scope
 
-⚠️ Notes
+Potential improvements include:
 
-- Dataset and trained models are excluded using ".gitignore"
-- Make sure to download dataset separately
-- Large files are not pushed to GitHub
+* Experimenting with architectures such as EfficientNet, ResNet, and Vision Transformers.
+* Improving classification performance through advanced augmentation and optimization techniques.
+* Incorporating lesion segmentation before classification.
+* Expanding the dataset with more diverse images.
+* Improving performance on real-world smartphone images.
+* Deploying the application on a cloud platform.
+* Developing a dedicated mobile application.
+* Adding detailed per-class precision, recall, and F1-score analysis.
+* Extending the explainability module with additional XAI techniques.
+* Supporting multiple languages for the educational content.
 
----
+## Project Impact
 
-💡 Future Improvements
+This project demonstrates an end-to-end application of deep learning, explainable AI, and web development to the problem of skin lesion classification.
 
-- Improve model accuracy with better architectures
-- Deploy as a web application
-- Add real-time image prediction
-- Integrate with mobile applications
+By combining a lightweight classification model with Grad-CAM visualization and an accessible web interface, the system provides a practical prototype for AI-assisted skin lesion screening and skin cancer awareness.
 
----
+The primary objective is to demonstrate the technical feasibility of using deep learning for image-based skin lesion analysis while emphasizing interpretability and responsible use.
 
-🙌 Author
+## Author
 
-P P Krishna
-Computer Science Student
+**P. P. Krishna**
 
----
+Computer Science and Engineering Student
 
-⭐ If you like this project
+GitHub: [krishnapp2004](https://github.com/krishnapp2004)
 
-Give it a star ⭐ on GitHub!
+## License
+
+This project is intended for educational and research purposes.
